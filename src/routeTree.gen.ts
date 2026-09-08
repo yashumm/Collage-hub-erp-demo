@@ -10,33 +10,180 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AdminIndexRouteImport } from './routes/admin/index'
+import { Route as AdminAnnouncementsRouteImport } from './routes/admin/announcements'
+import { Route as AdminCoursesRouteImport } from './routes/admin/courses'
+import { Route as AdminFacultyRouteImport } from './routes/admin/faculty'
+import { Route as AdminHierarchyRouteImport } from './routes/admin/hierarchy'
+import { Route as AdminSecurityRouteImport } from './routes/admin/security'
+import { Route as AdminStudentsRouteImport } from './routes/admin/students'
+import { Route as FacultyIndexRouteImport } from './routes/faculty/index'
+import { Route as FacultyAttendanceRouteImport } from './routes/faculty/attendance'
+import { Route as FacultyGradesRouteImport } from './routes/faculty/grades'
+import { Route as FacultySectionsRouteImport } from './routes/faculty/sections'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAnnouncementsRoute = AdminAnnouncementsRouteImport.update({
+  id: '/admin/announcements',
+  path: '/admin/announcements',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminCoursesRoute = AdminCoursesRouteImport.update({
+  id: '/admin/courses',
+  path: '/admin/courses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminFacultyRoute = AdminFacultyRouteImport.update({
+  id: '/admin/faculty',
+  path: '/admin/faculty',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminHierarchyRoute = AdminHierarchyRouteImport.update({
+  id: '/admin/hierarchy',
+  path: '/admin/hierarchy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSecurityRoute = AdminSecurityRouteImport.update({
+  id: '/admin/security',
+  path: '/admin/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminStudentsRoute = AdminStudentsRouteImport.update({
+  id: '/admin/students',
+  path: '/admin/students',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FacultyIndexRoute = FacultyIndexRouteImport.update({
+  id: '/faculty/',
+  path: '/faculty/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FacultyAttendanceRoute = FacultyAttendanceRouteImport.update({
+  id: '/faculty/attendance',
+  path: '/faculty/attendance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FacultyGradesRoute = FacultyGradesRouteImport.update({
+  id: '/faculty/grades',
+  path: '/faculty/grades',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FacultySectionsRoute = FacultySectionsRouteImport.update({
+  id: '/faculty/sections',
+  path: '/faculty/sections',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/admin/announcements': typeof AdminAnnouncementsRoute
+  '/admin/courses': typeof AdminCoursesRoute
+  '/admin/faculty': typeof AdminFacultyRoute
+  '/admin/hierarchy': typeof AdminHierarchyRoute
+  '/admin/security': typeof AdminSecurityRoute
+  '/admin/students': typeof AdminStudentsRoute
+  '/faculty/attendance': typeof FacultyAttendanceRoute
+  '/faculty/grades': typeof FacultyGradesRoute
+  '/faculty/sections': typeof FacultySectionsRoute
+  '/admin/': typeof AdminIndexRoute
+  '/faculty/': typeof FacultyIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/admin/announcements': typeof AdminAnnouncementsRoute
+  '/admin/courses': typeof AdminCoursesRoute
+  '/admin/faculty': typeof AdminFacultyRoute
+  '/admin/hierarchy': typeof AdminHierarchyRoute
+  '/admin/security': typeof AdminSecurityRoute
+  '/admin/students': typeof AdminStudentsRoute
+  '/faculty/attendance': typeof FacultyAttendanceRoute
+  '/faculty/grades': typeof FacultyGradesRoute
+  '/faculty/sections': typeof FacultySectionsRoute
+  '/admin': typeof AdminIndexRoute
+  '/faculty': typeof FacultyIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/admin/announcements': typeof AdminAnnouncementsRoute
+  '/admin/courses': typeof AdminCoursesRoute
+  '/admin/faculty': typeof AdminFacultyRoute
+  '/admin/hierarchy': typeof AdminHierarchyRoute
+  '/admin/security': typeof AdminSecurityRoute
+  '/admin/students': typeof AdminStudentsRoute
+  '/faculty/attendance': typeof FacultyAttendanceRoute
+  '/faculty/grades': typeof FacultyGradesRoute
+  '/faculty/sections': typeof FacultySectionsRoute
+  '/admin/': typeof AdminIndexRoute
+  '/faculty/': typeof FacultyIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/admin/announcements'
+    | '/admin/courses'
+    | '/admin/faculty'
+    | '/admin/hierarchy'
+    | '/admin/security'
+    | '/admin/students'
+    | '/faculty/attendance'
+    | '/faculty/grades'
+    | '/faculty/sections'
+    | '/admin/'
+    | '/faculty/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/admin/announcements'
+    | '/admin/courses'
+    | '/admin/faculty'
+    | '/admin/hierarchy'
+    | '/admin/security'
+    | '/admin/students'
+    | '/faculty/attendance'
+    | '/faculty/grades'
+    | '/faculty/sections'
+    | '/admin'
+    | '/faculty'
+  id:
+    | '__root__'
+    | '/'
+    | '/admin/announcements'
+    | '/admin/courses'
+    | '/admin/faculty'
+    | '/admin/hierarchy'
+    | '/admin/security'
+    | '/admin/students'
+    | '/faculty/attendance'
+    | '/faculty/grades'
+    | '/faculty/sections'
+    | '/admin/'
+    | '/faculty/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AdminAnnouncementsRoute: typeof AdminAnnouncementsRoute
+  AdminCoursesRoute: typeof AdminCoursesRoute
+  AdminFacultyRoute: typeof AdminFacultyRoute
+  AdminHierarchyRoute: typeof AdminHierarchyRoute
+  AdminSecurityRoute: typeof AdminSecurityRoute
+  AdminStudentsRoute: typeof AdminStudentsRoute
+  FacultyAttendanceRoute: typeof FacultyAttendanceRoute
+  FacultyGradesRoute: typeof FacultyGradesRoute
+  FacultySectionsRoute: typeof FacultySectionsRoute
+  AdminIndexRoute: typeof AdminIndexRoute
+  FacultyIndexRoute: typeof FacultyIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -48,11 +195,99 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/announcements': {
+      id: '/admin/announcements'
+      path: '/admin/announcements'
+      fullPath: '/admin/announcements'
+      preLoaderRoute: typeof AdminAnnouncementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/courses': {
+      id: '/admin/courses'
+      path: '/admin/courses'
+      fullPath: '/admin/courses'
+      preLoaderRoute: typeof AdminCoursesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/faculty': {
+      id: '/admin/faculty'
+      path: '/admin/faculty'
+      fullPath: '/admin/faculty'
+      preLoaderRoute: typeof AdminFacultyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/hierarchy': {
+      id: '/admin/hierarchy'
+      path: '/admin/hierarchy'
+      fullPath: '/admin/hierarchy'
+      preLoaderRoute: typeof AdminHierarchyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/security': {
+      id: '/admin/security'
+      path: '/admin/security'
+      fullPath: '/admin/security'
+      preLoaderRoute: typeof AdminSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/students': {
+      id: '/admin/students'
+      path: '/admin/students'
+      fullPath: '/admin/students'
+      preLoaderRoute: typeof AdminStudentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faculty/': {
+      id: '/faculty/'
+      path: '/faculty'
+      fullPath: '/faculty/'
+      preLoaderRoute: typeof FacultyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faculty/attendance': {
+      id: '/faculty/attendance'
+      path: '/faculty/attendance'
+      fullPath: '/faculty/attendance'
+      preLoaderRoute: typeof FacultyAttendanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faculty/grades': {
+      id: '/faculty/grades'
+      path: '/faculty/grades'
+      fullPath: '/faculty/grades'
+      preLoaderRoute: typeof FacultyGradesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faculty/sections': {
+      id: '/faculty/sections'
+      path: '/faculty/sections'
+      fullPath: '/faculty/sections'
+      preLoaderRoute: typeof FacultySectionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AdminAnnouncementsRoute: AdminAnnouncementsRoute,
+  AdminCoursesRoute: AdminCoursesRoute,
+  AdminFacultyRoute: AdminFacultyRoute,
+  AdminHierarchyRoute: AdminHierarchyRoute,
+  AdminSecurityRoute: AdminSecurityRoute,
+  AdminStudentsRoute: AdminStudentsRoute,
+  FacultyAttendanceRoute: FacultyAttendanceRoute,
+  FacultyGradesRoute: FacultyGradesRoute,
+  FacultySectionsRoute: FacultySectionsRoute,
+  AdminIndexRoute: AdminIndexRoute,
+  FacultyIndexRoute: FacultyIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
