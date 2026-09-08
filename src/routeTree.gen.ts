@@ -17,6 +17,10 @@ import { Route as AdminFacultyRouteImport } from './routes/admin/faculty'
 import { Route as AdminHierarchyRouteImport } from './routes/admin/hierarchy'
 import { Route as AdminSecurityRouteImport } from './routes/admin/security'
 import { Route as AdminStudentsRouteImport } from './routes/admin/students'
+import { Route as FacultyIndexRouteImport } from './routes/faculty/index'
+import { Route as FacultyAttendanceRouteImport } from './routes/faculty/attendance'
+import { Route as FacultyGradesRouteImport } from './routes/faculty/grades'
+import { Route as FacultySectionsRouteImport } from './routes/faculty/sections'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -58,6 +62,26 @@ const AdminStudentsRoute = AdminStudentsRouteImport.update({
   path: '/admin/students',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FacultyIndexRoute = FacultyIndexRouteImport.update({
+  id: '/faculty/',
+  path: '/faculty/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FacultyAttendanceRoute = FacultyAttendanceRouteImport.update({
+  id: '/faculty/attendance',
+  path: '/faculty/attendance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FacultyGradesRoute = FacultyGradesRouteImport.update({
+  id: '/faculty/grades',
+  path: '/faculty/grades',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FacultySectionsRoute = FacultySectionsRouteImport.update({
+  id: '/faculty/sections',
+  path: '/faculty/sections',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -67,7 +91,11 @@ export interface FileRoutesByFullPath {
   '/admin/hierarchy': typeof AdminHierarchyRoute
   '/admin/security': typeof AdminSecurityRoute
   '/admin/students': typeof AdminStudentsRoute
+  '/faculty/attendance': typeof FacultyAttendanceRoute
+  '/faculty/grades': typeof FacultyGradesRoute
+  '/faculty/sections': typeof FacultySectionsRoute
   '/admin/': typeof AdminIndexRoute
+  '/faculty/': typeof FacultyIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -77,7 +105,11 @@ export interface FileRoutesByTo {
   '/admin/hierarchy': typeof AdminHierarchyRoute
   '/admin/security': typeof AdminSecurityRoute
   '/admin/students': typeof AdminStudentsRoute
+  '/faculty/attendance': typeof FacultyAttendanceRoute
+  '/faculty/grades': typeof FacultyGradesRoute
+  '/faculty/sections': typeof FacultySectionsRoute
   '/admin': typeof AdminIndexRoute
+  '/faculty': typeof FacultyIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -88,7 +120,11 @@ export interface FileRoutesById {
   '/admin/hierarchy': typeof AdminHierarchyRoute
   '/admin/security': typeof AdminSecurityRoute
   '/admin/students': typeof AdminStudentsRoute
+  '/faculty/attendance': typeof FacultyAttendanceRoute
+  '/faculty/grades': typeof FacultyGradesRoute
+  '/faculty/sections': typeof FacultySectionsRoute
   '/admin/': typeof AdminIndexRoute
+  '/faculty/': typeof FacultyIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -100,7 +136,11 @@ export interface FileRouteTypes {
     | '/admin/hierarchy'
     | '/admin/security'
     | '/admin/students'
+    | '/faculty/attendance'
+    | '/faculty/grades'
+    | '/faculty/sections'
     | '/admin/'
+    | '/faculty/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -110,7 +150,11 @@ export interface FileRouteTypes {
     | '/admin/hierarchy'
     | '/admin/security'
     | '/admin/students'
+    | '/faculty/attendance'
+    | '/faculty/grades'
+    | '/faculty/sections'
     | '/admin'
+    | '/faculty'
   id:
     | '__root__'
     | '/'
@@ -120,7 +164,11 @@ export interface FileRouteTypes {
     | '/admin/hierarchy'
     | '/admin/security'
     | '/admin/students'
+    | '/faculty/attendance'
+    | '/faculty/grades'
+    | '/faculty/sections'
     | '/admin/'
+    | '/faculty/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -131,7 +179,11 @@ export interface RootRouteChildren {
   AdminHierarchyRoute: typeof AdminHierarchyRoute
   AdminSecurityRoute: typeof AdminSecurityRoute
   AdminStudentsRoute: typeof AdminStudentsRoute
+  FacultyAttendanceRoute: typeof FacultyAttendanceRoute
+  FacultyGradesRoute: typeof FacultyGradesRoute
+  FacultySectionsRoute: typeof FacultySectionsRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  FacultyIndexRoute: typeof FacultyIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -192,6 +244,34 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminStudentsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faculty/': {
+      id: '/faculty/'
+      path: '/faculty'
+      fullPath: '/faculty/'
+      preLoaderRoute: typeof FacultyIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faculty/attendance': {
+      id: '/faculty/attendance'
+      path: '/faculty/attendance'
+      fullPath: '/faculty/attendance'
+      preLoaderRoute: typeof FacultyAttendanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faculty/grades': {
+      id: '/faculty/grades'
+      path: '/faculty/grades'
+      fullPath: '/faculty/grades'
+      preLoaderRoute: typeof FacultyGradesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faculty/sections': {
+      id: '/faculty/sections'
+      path: '/faculty/sections'
+      fullPath: '/faculty/sections'
+      preLoaderRoute: typeof FacultySectionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -203,7 +283,11 @@ const rootRouteChildren: RootRouteChildren = {
   AdminHierarchyRoute: AdminHierarchyRoute,
   AdminSecurityRoute: AdminSecurityRoute,
   AdminStudentsRoute: AdminStudentsRoute,
+  FacultyAttendanceRoute: FacultyAttendanceRoute,
+  FacultyGradesRoute: FacultyGradesRoute,
+  FacultySectionsRoute: FacultySectionsRoute,
   AdminIndexRoute: AdminIndexRoute,
+  FacultyIndexRoute: FacultyIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
