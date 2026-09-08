@@ -150,7 +150,6 @@ export const students: Student[] = names.map((name, i) => {
     semester: course.semester,
     sectionId,
     status: i % 11 === 0 ? "On Leave" : "Active",
-    cgoaPlaceholder: undefined,
     cgpa: Number((6.4 + ((i * 37) % 30) / 10).toFixed(2)),
   } as Student;
 });
