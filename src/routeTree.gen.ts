@@ -22,10 +22,14 @@ import { Route as FacultyAttendanceRouteImport } from './routes/faculty/attendan
 import { Route as FacultyGradesRouteImport } from './routes/faculty/grades'
 import { Route as FacultySectionsRouteImport } from './routes/faculty/sections'
 import { Route as StudentIndexRouteImport } from './routes/student/index'
+import { Route as StudentActivitiesRouteImport } from './routes/student/activities'
+import { Route as StudentAnnouncementsRouteImport } from './routes/student/announcements'
 import { Route as StudentAttendanceRouteImport } from './routes/student/attendance'
 import { Route as StudentCoursesRouteImport } from './routes/student/courses'
 import { Route as StudentGradesRouteImport } from './routes/student/grades'
 import { Route as StudentProfileRouteImport } from './routes/student/profile'
+import { Route as StudentSecurityRouteImport } from './routes/student/security'
+import { Route as StudentStudyHoursRouteImport } from './routes/student/study-hours'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -92,6 +96,16 @@ const StudentIndexRoute = StudentIndexRouteImport.update({
   path: '/student/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudentActivitiesRoute = StudentActivitiesRouteImport.update({
+  id: '/student/activities',
+  path: '/student/activities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentAnnouncementsRoute = StudentAnnouncementsRouteImport.update({
+  id: '/student/announcements',
+  path: '/student/announcements',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const StudentAttendanceRoute = StudentAttendanceRouteImport.update({
   id: '/student/attendance',
   path: '/student/attendance',
@@ -112,6 +126,16 @@ const StudentProfileRoute = StudentProfileRouteImport.update({
   path: '/student/profile',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudentSecurityRoute = StudentSecurityRouteImport.update({
+  id: '/student/security',
+  path: '/student/security',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentStudyHoursRoute = StudentStudyHoursRouteImport.update({
+  id: '/student/study-hours',
+  path: '/student/study-hours',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -124,10 +148,14 @@ export interface FileRoutesByFullPath {
   '/faculty/attendance': typeof FacultyAttendanceRoute
   '/faculty/grades': typeof FacultyGradesRoute
   '/faculty/sections': typeof FacultySectionsRoute
+  '/student/activities': typeof StudentActivitiesRoute
+  '/student/announcements': typeof StudentAnnouncementsRoute
   '/student/attendance': typeof StudentAttendanceRoute
   '/student/courses': typeof StudentCoursesRoute
   '/student/grades': typeof StudentGradesRoute
   '/student/profile': typeof StudentProfileRoute
+  '/student/security': typeof StudentSecurityRoute
+  '/student/study-hours': typeof StudentStudyHoursRoute
   '/admin/': typeof AdminIndexRoute
   '/faculty/': typeof FacultyIndexRoute
   '/student/': typeof StudentIndexRoute
@@ -143,10 +171,14 @@ export interface FileRoutesByTo {
   '/faculty/attendance': typeof FacultyAttendanceRoute
   '/faculty/grades': typeof FacultyGradesRoute
   '/faculty/sections': typeof FacultySectionsRoute
+  '/student/activities': typeof StudentActivitiesRoute
+  '/student/announcements': typeof StudentAnnouncementsRoute
   '/student/attendance': typeof StudentAttendanceRoute
   '/student/courses': typeof StudentCoursesRoute
   '/student/grades': typeof StudentGradesRoute
   '/student/profile': typeof StudentProfileRoute
+  '/student/security': typeof StudentSecurityRoute
+  '/student/study-hours': typeof StudentStudyHoursRoute
   '/admin': typeof AdminIndexRoute
   '/faculty': typeof FacultyIndexRoute
   '/student': typeof StudentIndexRoute
@@ -163,10 +195,14 @@ export interface FileRoutesById {
   '/faculty/attendance': typeof FacultyAttendanceRoute
   '/faculty/grades': typeof FacultyGradesRoute
   '/faculty/sections': typeof FacultySectionsRoute
+  '/student/activities': typeof StudentActivitiesRoute
+  '/student/announcements': typeof StudentAnnouncementsRoute
   '/student/attendance': typeof StudentAttendanceRoute
   '/student/courses': typeof StudentCoursesRoute
   '/student/grades': typeof StudentGradesRoute
   '/student/profile': typeof StudentProfileRoute
+  '/student/security': typeof StudentSecurityRoute
+  '/student/study-hours': typeof StudentStudyHoursRoute
   '/admin/': typeof AdminIndexRoute
   '/faculty/': typeof FacultyIndexRoute
   '/student/': typeof StudentIndexRoute
@@ -184,10 +220,14 @@ export interface FileRouteTypes {
     | '/faculty/attendance'
     | '/faculty/grades'
     | '/faculty/sections'
+    | '/student/activities'
+    | '/student/announcements'
     | '/student/attendance'
     | '/student/courses'
     | '/student/grades'
     | '/student/profile'
+    | '/student/security'
+    | '/student/study-hours'
     | '/admin/'
     | '/faculty/'
     | '/student/'
@@ -203,10 +243,14 @@ export interface FileRouteTypes {
     | '/faculty/attendance'
     | '/faculty/grades'
     | '/faculty/sections'
+    | '/student/activities'
+    | '/student/announcements'
     | '/student/attendance'
     | '/student/courses'
     | '/student/grades'
     | '/student/profile'
+    | '/student/security'
+    | '/student/study-hours'
     | '/admin'
     | '/faculty'
     | '/student'
@@ -222,10 +266,14 @@ export interface FileRouteTypes {
     | '/faculty/attendance'
     | '/faculty/grades'
     | '/faculty/sections'
+    | '/student/activities'
+    | '/student/announcements'
     | '/student/attendance'
     | '/student/courses'
     | '/student/grades'
     | '/student/profile'
+    | '/student/security'
+    | '/student/study-hours'
     | '/admin/'
     | '/faculty/'
     | '/student/'
@@ -242,10 +290,14 @@ export interface RootRouteChildren {
   FacultyAttendanceRoute: typeof FacultyAttendanceRoute
   FacultyGradesRoute: typeof FacultyGradesRoute
   FacultySectionsRoute: typeof FacultySectionsRoute
+  StudentActivitiesRoute: typeof StudentActivitiesRoute
+  StudentAnnouncementsRoute: typeof StudentAnnouncementsRoute
   StudentAttendanceRoute: typeof StudentAttendanceRoute
   StudentCoursesRoute: typeof StudentCoursesRoute
   StudentGradesRoute: typeof StudentGradesRoute
   StudentProfileRoute: typeof StudentProfileRoute
+  StudentSecurityRoute: typeof StudentSecurityRoute
+  StudentStudyHoursRoute: typeof StudentStudyHoursRoute
   AdminIndexRoute: typeof AdminIndexRoute
   FacultyIndexRoute: typeof FacultyIndexRoute
   StudentIndexRoute: typeof StudentIndexRoute
@@ -344,6 +396,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/student/activities': {
+      id: '/student/activities'
+      path: '/student/activities'
+      fullPath: '/student/activities'
+      preLoaderRoute: typeof StudentActivitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student/announcements': {
+      id: '/student/announcements'
+      path: '/student/announcements'
+      fullPath: '/student/announcements'
+      preLoaderRoute: typeof StudentAnnouncementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/student/attendance': {
       id: '/student/attendance'
       path: '/student/attendance'
@@ -372,6 +438,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof StudentProfileRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/student/security': {
+      id: '/student/security'
+      path: '/student/security'
+      fullPath: '/student/security'
+      preLoaderRoute: typeof StudentSecurityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student/study-hours': {
+      id: '/student/study-hours'
+      path: '/student/study-hours'
+      fullPath: '/student/study-hours'
+      preLoaderRoute: typeof StudentStudyHoursRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -386,10 +466,14 @@ const rootRouteChildren: RootRouteChildren = {
   FacultyAttendanceRoute: FacultyAttendanceRoute,
   FacultyGradesRoute: FacultyGradesRoute,
   FacultySectionsRoute: FacultySectionsRoute,
+  StudentActivitiesRoute: StudentActivitiesRoute,
+  StudentAnnouncementsRoute: StudentAnnouncementsRoute,
   StudentAttendanceRoute: StudentAttendanceRoute,
   StudentCoursesRoute: StudentCoursesRoute,
   StudentGradesRoute: StudentGradesRoute,
   StudentProfileRoute: StudentProfileRoute,
+  StudentSecurityRoute: StudentSecurityRoute,
+  StudentStudyHoursRoute: StudentStudyHoursRoute,
   AdminIndexRoute: AdminIndexRoute,
   FacultyIndexRoute: FacultyIndexRoute,
   StudentIndexRoute: StudentIndexRoute,
