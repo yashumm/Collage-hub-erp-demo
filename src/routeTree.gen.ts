@@ -21,6 +21,11 @@ import { Route as FacultyIndexRouteImport } from './routes/faculty/index'
 import { Route as FacultyAttendanceRouteImport } from './routes/faculty/attendance'
 import { Route as FacultyGradesRouteImport } from './routes/faculty/grades'
 import { Route as FacultySectionsRouteImport } from './routes/faculty/sections'
+import { Route as StudentIndexRouteImport } from './routes/student/index'
+import { Route as StudentAttendanceRouteImport } from './routes/student/attendance'
+import { Route as StudentCoursesRouteImport } from './routes/student/courses'
+import { Route as StudentGradesRouteImport } from './routes/student/grades'
+import { Route as StudentProfileRouteImport } from './routes/student/profile'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -82,6 +87,31 @@ const FacultySectionsRoute = FacultySectionsRouteImport.update({
   path: '/faculty/sections',
   getParentRoute: () => rootRouteImport,
 } as any)
+const StudentIndexRoute = StudentIndexRouteImport.update({
+  id: '/student/',
+  path: '/student/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentAttendanceRoute = StudentAttendanceRouteImport.update({
+  id: '/student/attendance',
+  path: '/student/attendance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentCoursesRoute = StudentCoursesRouteImport.update({
+  id: '/student/courses',
+  path: '/student/courses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentGradesRoute = StudentGradesRouteImport.update({
+  id: '/student/grades',
+  path: '/student/grades',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const StudentProfileRoute = StudentProfileRouteImport.update({
+  id: '/student/profile',
+  path: '/student/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -94,8 +124,13 @@ export interface FileRoutesByFullPath {
   '/faculty/attendance': typeof FacultyAttendanceRoute
   '/faculty/grades': typeof FacultyGradesRoute
   '/faculty/sections': typeof FacultySectionsRoute
+  '/student/attendance': typeof StudentAttendanceRoute
+  '/student/courses': typeof StudentCoursesRoute
+  '/student/grades': typeof StudentGradesRoute
+  '/student/profile': typeof StudentProfileRoute
   '/admin/': typeof AdminIndexRoute
   '/faculty/': typeof FacultyIndexRoute
+  '/student/': typeof StudentIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -108,8 +143,13 @@ export interface FileRoutesByTo {
   '/faculty/attendance': typeof FacultyAttendanceRoute
   '/faculty/grades': typeof FacultyGradesRoute
   '/faculty/sections': typeof FacultySectionsRoute
+  '/student/attendance': typeof StudentAttendanceRoute
+  '/student/courses': typeof StudentCoursesRoute
+  '/student/grades': typeof StudentGradesRoute
+  '/student/profile': typeof StudentProfileRoute
   '/admin': typeof AdminIndexRoute
   '/faculty': typeof FacultyIndexRoute
+  '/student': typeof StudentIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -123,8 +163,13 @@ export interface FileRoutesById {
   '/faculty/attendance': typeof FacultyAttendanceRoute
   '/faculty/grades': typeof FacultyGradesRoute
   '/faculty/sections': typeof FacultySectionsRoute
+  '/student/attendance': typeof StudentAttendanceRoute
+  '/student/courses': typeof StudentCoursesRoute
+  '/student/grades': typeof StudentGradesRoute
+  '/student/profile': typeof StudentProfileRoute
   '/admin/': typeof AdminIndexRoute
   '/faculty/': typeof FacultyIndexRoute
+  '/student/': typeof StudentIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -139,8 +184,13 @@ export interface FileRouteTypes {
     | '/faculty/attendance'
     | '/faculty/grades'
     | '/faculty/sections'
+    | '/student/attendance'
+    | '/student/courses'
+    | '/student/grades'
+    | '/student/profile'
     | '/admin/'
     | '/faculty/'
+    | '/student/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -153,8 +203,13 @@ export interface FileRouteTypes {
     | '/faculty/attendance'
     | '/faculty/grades'
     | '/faculty/sections'
+    | '/student/attendance'
+    | '/student/courses'
+    | '/student/grades'
+    | '/student/profile'
     | '/admin'
     | '/faculty'
+    | '/student'
   id:
     | '__root__'
     | '/'
@@ -167,8 +222,13 @@ export interface FileRouteTypes {
     | '/faculty/attendance'
     | '/faculty/grades'
     | '/faculty/sections'
+    | '/student/attendance'
+    | '/student/courses'
+    | '/student/grades'
+    | '/student/profile'
     | '/admin/'
     | '/faculty/'
+    | '/student/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -182,8 +242,13 @@ export interface RootRouteChildren {
   FacultyAttendanceRoute: typeof FacultyAttendanceRoute
   FacultyGradesRoute: typeof FacultyGradesRoute
   FacultySectionsRoute: typeof FacultySectionsRoute
+  StudentAttendanceRoute: typeof StudentAttendanceRoute
+  StudentCoursesRoute: typeof StudentCoursesRoute
+  StudentGradesRoute: typeof StudentGradesRoute
+  StudentProfileRoute: typeof StudentProfileRoute
   AdminIndexRoute: typeof AdminIndexRoute
   FacultyIndexRoute: typeof FacultyIndexRoute
+  StudentIndexRoute: typeof StudentIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -272,6 +337,41 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FacultySectionsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/student/': {
+      id: '/student/'
+      path: '/student'
+      fullPath: '/student/'
+      preLoaderRoute: typeof StudentIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student/attendance': {
+      id: '/student/attendance'
+      path: '/student/attendance'
+      fullPath: '/student/attendance'
+      preLoaderRoute: typeof StudentAttendanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student/courses': {
+      id: '/student/courses'
+      path: '/student/courses'
+      fullPath: '/student/courses'
+      preLoaderRoute: typeof StudentCoursesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student/grades': {
+      id: '/student/grades'
+      path: '/student/grades'
+      fullPath: '/student/grades'
+      preLoaderRoute: typeof StudentGradesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/student/profile': {
+      id: '/student/profile'
+      path: '/student/profile'
+      fullPath: '/student/profile'
+      preLoaderRoute: typeof StudentProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -286,8 +386,13 @@ const rootRouteChildren: RootRouteChildren = {
   FacultyAttendanceRoute: FacultyAttendanceRoute,
   FacultyGradesRoute: FacultyGradesRoute,
   FacultySectionsRoute: FacultySectionsRoute,
+  StudentAttendanceRoute: StudentAttendanceRoute,
+  StudentCoursesRoute: StudentCoursesRoute,
+  StudentGradesRoute: StudentGradesRoute,
+  StudentProfileRoute: StudentProfileRoute,
   AdminIndexRoute: AdminIndexRoute,
   FacultyIndexRoute: FacultyIndexRoute,
+  StudentIndexRoute: StudentIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
