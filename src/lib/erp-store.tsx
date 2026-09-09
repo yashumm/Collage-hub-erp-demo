@@ -3,21 +3,27 @@ import {
   activity as seedActivity,
   announcements as seedAnnouncements,
   attendance as seedAttendance,
+  auditLogs as seedAuditLogs,
   courses as seedCourses,
   faculty as seedFaculty,
   grades as seedGrades,
   sections as seedSections,
+  studentActivities as seedStudentActivities,
   students as seedStudents,
+  studyHours as seedStudyHours,
   type ActivityItem,
   type Announcement,
   type AttendanceMark,
   type AttendanceRecord,
+  type AuditLog,
   type Course,
   type Faculty,
   type Grade,
   type Role,
   type Section,
   type Student,
+  type StudentActivity,
+  type StudyHourLog,
 } from "@/data/erp";
 
 const ROLE_KEY = "erp.role";
@@ -33,6 +39,9 @@ type State = {
   grades: Grade[];
   announcements: Announcement[];
   activity: ActivityItem[];
+  studyHours: StudyHourLog[];
+  studentActivities: StudentActivity[];
+  auditLogs: AuditLog[];
   addStudent: (s: Omit<Student, "id">) => void;
   updateStudent: (id: string, s: Omit<Student, "id">) => void;
   removeStudent: (id: string) => void;
@@ -46,6 +55,10 @@ type State = {
   setGrade: (studentId: string, courseId: string, internal: number, external: number) => void;
   addAnnouncement: (a: Omit<Announcement, "id">) => void;
   removeAnnouncement: (id: string) => void;
+  addStudyHours: (log: Omit<StudyHourLog, "id">) => void;
+  removeStudyHours: (id: string) => void;
+  addActivity: (a: Omit<StudentActivity, "id">) => void;
+  removeActivity: (id: string) => void;
   log: (action: string, target: string) => void;
 };
 
@@ -64,6 +77,9 @@ export function ErpProvider({ children }: { children: React.ReactNode }) {
   const [grades, setGrades] = React.useState(seedGrades);
   const [announcements, setAnnouncements] = React.useState(seedAnnouncements);
   const [activity, setActivity] = React.useState(seedActivity);
+  const [studyHours, setStudyHours] = React.useState(seedStudyHours);
+  const [studentActivities, setStudentActivities] = React.useState(seedStudentActivities);
+  const [auditLogs, setAuditLogs] = React.useState(seedAuditLogs);
 
   React.useEffect(() => {
     const stored = window.localStorage.getItem(ROLE_KEY) as Role | null;
@@ -79,10 +95,25 @@ export function ErpProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   const log = React.useCallback((action: string, target: string) => {
-    setActivity((prev) => [
-      { id: uid("ac"), actor: "You (demo session)", action, target, at: "Just now" },
-      ...prev,
-    ].slice(0, 20));
+    setActivity((prev) =>
+      [
+        { id: uid("ac"), actor: "You (demo session)", action, target, at: "Just now" },
+        ...prev,
+      ].slice(0, 20),
+    );
+    setAuditLogs((prev) =>
+      [
+        {
+          id: uid("al"),
+          actor: "You (demo session)",
+          role: (window.localStorage.getItem(ROLE_KEY) as Role | null) ?? "admin",
+          action: action.charAt(0).toUpperCase() + action.slice(1),
+          entity: target,
+          at: "Just now",
+        },
+        ...prev,
+      ].slice(0, 40),
+    );
   }, []);
 
   const value: State = {
@@ -96,6 +127,9 @@ export function ErpProvider({ children }: { children: React.ReactNode }) {
     grades,
     announcements,
     activity,
+    studyHours,
+    studentActivities,
+    auditLogs,
     log,
     addStudent: (s) => {
       setStudents((prev) => [{ ...s, id: uid("s") }, ...prev]);
@@ -163,6 +197,22 @@ export function ErpProvider({ children }: { children: React.ReactNode }) {
     removeAnnouncement: (id) => {
       setAnnouncements((prev) => prev.filter((a) => a.id !== id));
       log("removed announcement", id);
+    },
+    addStudyHours: (entry) => {
+      setStudyHours((prev) => [{ ...entry, id: uid("sh") }, ...prev]);
+      log("logged study hours for", entry.courseId);
+    },
+    removeStudyHours: (id) => {
+      setStudyHours((prev) => prev.filter((s) => s.id !== id));
+      log("deleted a study-hour entry", id);
+    },
+    addActivity: (a) => {
+      setStudentActivities((prev) => [{ ...a, id: uid("sa") }, ...prev]);
+      log("submitted activity", a.title);
+    },
+    removeActivity: (id) => {
+      setStudentActivities((prev) => prev.filter((a) => a.id !== id));
+      log("removed activity", id);
     },
   };
 
