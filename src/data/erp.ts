@@ -321,3 +321,92 @@ export const GRADE_SCALE: { min: number; grade: string; points: number }[] = [
 export function gradeFor(total: number) {
   return GRADE_SCALE.find((g) => total >= g.min)!;
 }
+
+// ---------------------------------------------------------------------------
+// Study hours, co-curricular activities and audit trail (all static mock data)
+// ---------------------------------------------------------------------------
+
+export type StudyHourLog = {
+  id: string;
+  studentId: string;
+  courseId: string;
+  date: string;
+  hours: number;
+  note: string;
+};
+
+export const ACTIVITY_CATEGORIES = [
+  "Technical",
+  "Sports",
+  "Cultural",
+  "Community Service",
+  "Internship",
+] as const;
+
+export type ActivityCategory = (typeof ACTIVITY_CATEGORIES)[number];
+
+export type StudentActivity = {
+  id: string;
+  studentId: string;
+  title: string;
+  category: ActivityCategory;
+  date: string;
+  points: number;
+  status: "Approved" | "Pending";
+};
+
+export type AuditLog = {
+  id: string;
+  actor: string;
+  role: Role;
+  action: string;
+  entity: string;
+  at: string;
+};
+
+export const studyHours: StudyHourLog[] = students.flatMap((st, si) => {
+  const section = sections.find((s) => s.id === st.sectionId)!;
+  return [1, 2, 3, 4].map((offset) => ({
+    id: `sh-${st.id}-${offset}`,
+    studentId: st.id,
+    courseId: section.courseId,
+    date: isoDay(offset),
+    hours: Number((1 + ((si + offset * 3) % 5) * 0.5).toFixed(1)),
+    note: offset % 2 === 0 ? "Self study" : "Assignment work",
+  }));
+});
+
+export const studentActivities: StudentActivity[] = students.flatMap((st, si) =>
+  [0, 1].map((k) => {
+    const category = ACTIVITY_CATEGORIES[(si + k * 2) % ACTIVITY_CATEGORIES.length]!;
+    return {
+      id: `sa-${st.id}-${k}`,
+      studentId: st.id,
+      title:
+        category === "Technical"
+          ? "Inter-college hackathon"
+          : category === "Sports"
+            ? "District level athletics meet"
+            : category === "Cultural"
+              ? "Annual cultural fest — music"
+              : category === "Internship"
+                ? "Summer internship (4 weeks)"
+                : "Village literacy drive",
+      category,
+      date: isoDay(7 + si + k * 5),
+      points: 5 + ((si + k * 3) % 4) * 5,
+      status: (si + k) % 4 === 0 ? "Pending" : "Approved",
+    } as StudentActivity;
+  }),
+);
+
+export const auditLogs: AuditLog[] = [
+  { id: "al-01", actor: "Dr. Meera Rao", role: "admin", action: "Created course", entity: "CS451 Machine Learning", at: `${isoDay(0)} 09:14` },
+  { id: "al-02", actor: "Prof. Anand Kulkarni", role: "faculty", action: "Saved attendance", entity: "CS301 - A", at: `${isoDay(0)} 09:41` },
+  { id: "al-03", actor: "Dr. Leena Fernandes", role: "faculty", action: "Updated internal marks", entity: "CS451 - B", at: `${isoDay(1)} 15:02` },
+  { id: "al-04", actor: "Dr. Meera Rao", role: "admin", action: "Allocated section", entity: "EC205 - A → Prof. Rakesh Menon", at: `${isoDay(1)} 11:20` },
+  { id: "al-05", actor: "Yashaswini M M", role: "student", action: "Logged study hours", entity: "CS301 Data Structures", at: `${isoDay(2)} 20:35` },
+  { id: "al-06", actor: "Dr. Meera Rao", role: "admin", action: "Published announcement", entity: "Mid-semester exam schedule", at: `${isoDay(2)} 10:05` },
+  { id: "al-07", actor: "Prof. Rakesh Menon", role: "faculty", action: "Saved attendance", entity: "EC205 - A", at: `${isoDay(3)} 10:12` },
+  { id: "al-08", actor: "Dr. Meera Rao", role: "admin", action: "Edited student record", entity: "ENG24AM0322", at: `${isoDay(4)} 16:48` },
+];
