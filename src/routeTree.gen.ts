@@ -18,9 +18,15 @@ import { Route as AdminHierarchyRouteImport } from './routes/admin/hierarchy'
 import { Route as AdminSecurityRouteImport } from './routes/admin/security'
 import { Route as AdminStudentsRouteImport } from './routes/admin/students'
 import { Route as FacultyIndexRouteImport } from './routes/faculty/index'
+import { Route as FacultyActivitiesRouteImport } from './routes/faculty/activities'
+import { Route as FacultyAnnouncementsRouteImport } from './routes/faculty/announcements'
 import { Route as FacultyAttendanceRouteImport } from './routes/faculty/attendance'
+import { Route as FacultyCoursesRouteImport } from './routes/faculty/courses'
 import { Route as FacultyGradesRouteImport } from './routes/faculty/grades'
+import { Route as FacultyProfileRouteImport } from './routes/faculty/profile'
 import { Route as FacultySectionsRouteImport } from './routes/faculty/sections'
+import { Route as FacultyStudentsRouteImport } from './routes/faculty/students'
+import { Route as FacultyStudyHoursRouteImport } from './routes/faculty/study-hours'
 import { Route as StudentIndexRouteImport } from './routes/student/index'
 import { Route as StudentActivitiesRouteImport } from './routes/student/activities'
 import { Route as StudentAnnouncementsRouteImport } from './routes/student/announcements'
@@ -76,9 +82,24 @@ const FacultyIndexRoute = FacultyIndexRouteImport.update({
   path: '/faculty/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FacultyActivitiesRoute = FacultyActivitiesRouteImport.update({
+  id: '/faculty/activities',
+  path: '/faculty/activities',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FacultyAnnouncementsRoute = FacultyAnnouncementsRouteImport.update({
+  id: '/faculty/announcements',
+  path: '/faculty/announcements',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FacultyAttendanceRoute = FacultyAttendanceRouteImport.update({
   id: '/faculty/attendance',
   path: '/faculty/attendance',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FacultyCoursesRoute = FacultyCoursesRouteImport.update({
+  id: '/faculty/courses',
+  path: '/faculty/courses',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FacultyGradesRoute = FacultyGradesRouteImport.update({
@@ -86,9 +107,24 @@ const FacultyGradesRoute = FacultyGradesRouteImport.update({
   path: '/faculty/grades',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FacultyProfileRoute = FacultyProfileRouteImport.update({
+  id: '/faculty/profile',
+  path: '/faculty/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const FacultySectionsRoute = FacultySectionsRouteImport.update({
   id: '/faculty/sections',
   path: '/faculty/sections',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FacultyStudentsRoute = FacultyStudentsRouteImport.update({
+  id: '/faculty/students',
+  path: '/faculty/students',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FacultyStudyHoursRoute = FacultyStudyHoursRouteImport.update({
+  id: '/faculty/study-hours',
+  path: '/faculty/study-hours',
   getParentRoute: () => rootRouteImport,
 } as any)
 const StudentIndexRoute = StudentIndexRouteImport.update({
@@ -145,9 +181,15 @@ export interface FileRoutesByFullPath {
   '/admin/hierarchy': typeof AdminHierarchyRoute
   '/admin/security': typeof AdminSecurityRoute
   '/admin/students': typeof AdminStudentsRoute
+  '/faculty/activities': typeof FacultyActivitiesRoute
+  '/faculty/announcements': typeof FacultyAnnouncementsRoute
   '/faculty/attendance': typeof FacultyAttendanceRoute
+  '/faculty/courses': typeof FacultyCoursesRoute
   '/faculty/grades': typeof FacultyGradesRoute
+  '/faculty/profile': typeof FacultyProfileRoute
   '/faculty/sections': typeof FacultySectionsRoute
+  '/faculty/students': typeof FacultyStudentsRoute
+  '/faculty/study-hours': typeof FacultyStudyHoursRoute
   '/student/activities': typeof StudentActivitiesRoute
   '/student/announcements': typeof StudentAnnouncementsRoute
   '/student/attendance': typeof StudentAttendanceRoute
@@ -168,9 +210,15 @@ export interface FileRoutesByTo {
   '/admin/hierarchy': typeof AdminHierarchyRoute
   '/admin/security': typeof AdminSecurityRoute
   '/admin/students': typeof AdminStudentsRoute
+  '/faculty/activities': typeof FacultyActivitiesRoute
+  '/faculty/announcements': typeof FacultyAnnouncementsRoute
   '/faculty/attendance': typeof FacultyAttendanceRoute
+  '/faculty/courses': typeof FacultyCoursesRoute
   '/faculty/grades': typeof FacultyGradesRoute
+  '/faculty/profile': typeof FacultyProfileRoute
   '/faculty/sections': typeof FacultySectionsRoute
+  '/faculty/students': typeof FacultyStudentsRoute
+  '/faculty/study-hours': typeof FacultyStudyHoursRoute
   '/student/activities': typeof StudentActivitiesRoute
   '/student/announcements': typeof StudentAnnouncementsRoute
   '/student/attendance': typeof StudentAttendanceRoute
@@ -192,9 +240,15 @@ export interface FileRoutesById {
   '/admin/hierarchy': typeof AdminHierarchyRoute
   '/admin/security': typeof AdminSecurityRoute
   '/admin/students': typeof AdminStudentsRoute
+  '/faculty/activities': typeof FacultyActivitiesRoute
+  '/faculty/announcements': typeof FacultyAnnouncementsRoute
   '/faculty/attendance': typeof FacultyAttendanceRoute
+  '/faculty/courses': typeof FacultyCoursesRoute
   '/faculty/grades': typeof FacultyGradesRoute
+  '/faculty/profile': typeof FacultyProfileRoute
   '/faculty/sections': typeof FacultySectionsRoute
+  '/faculty/students': typeof FacultyStudentsRoute
+  '/faculty/study-hours': typeof FacultyStudyHoursRoute
   '/student/activities': typeof StudentActivitiesRoute
   '/student/announcements': typeof StudentAnnouncementsRoute
   '/student/attendance': typeof StudentAttendanceRoute
@@ -217,9 +271,15 @@ export interface FileRouteTypes {
     | '/admin/hierarchy'
     | '/admin/security'
     | '/admin/students'
+    | '/faculty/activities'
+    | '/faculty/announcements'
     | '/faculty/attendance'
+    | '/faculty/courses'
     | '/faculty/grades'
+    | '/faculty/profile'
     | '/faculty/sections'
+    | '/faculty/students'
+    | '/faculty/study-hours'
     | '/student/activities'
     | '/student/announcements'
     | '/student/attendance'
@@ -240,9 +300,15 @@ export interface FileRouteTypes {
     | '/admin/hierarchy'
     | '/admin/security'
     | '/admin/students'
+    | '/faculty/activities'
+    | '/faculty/announcements'
     | '/faculty/attendance'
+    | '/faculty/courses'
     | '/faculty/grades'
+    | '/faculty/profile'
     | '/faculty/sections'
+    | '/faculty/students'
+    | '/faculty/study-hours'
     | '/student/activities'
     | '/student/announcements'
     | '/student/attendance'
@@ -263,9 +329,15 @@ export interface FileRouteTypes {
     | '/admin/hierarchy'
     | '/admin/security'
     | '/admin/students'
+    | '/faculty/activities'
+    | '/faculty/announcements'
     | '/faculty/attendance'
+    | '/faculty/courses'
     | '/faculty/grades'
+    | '/faculty/profile'
     | '/faculty/sections'
+    | '/faculty/students'
+    | '/faculty/study-hours'
     | '/student/activities'
     | '/student/announcements'
     | '/student/attendance'
@@ -287,9 +359,15 @@ export interface RootRouteChildren {
   AdminHierarchyRoute: typeof AdminHierarchyRoute
   AdminSecurityRoute: typeof AdminSecurityRoute
   AdminStudentsRoute: typeof AdminStudentsRoute
+  FacultyActivitiesRoute: typeof FacultyActivitiesRoute
+  FacultyAnnouncementsRoute: typeof FacultyAnnouncementsRoute
   FacultyAttendanceRoute: typeof FacultyAttendanceRoute
+  FacultyCoursesRoute: typeof FacultyCoursesRoute
   FacultyGradesRoute: typeof FacultyGradesRoute
+  FacultyProfileRoute: typeof FacultyProfileRoute
   FacultySectionsRoute: typeof FacultySectionsRoute
+  FacultyStudentsRoute: typeof FacultyStudentsRoute
+  FacultyStudyHoursRoute: typeof FacultyStudyHoursRoute
   StudentActivitiesRoute: typeof StudentActivitiesRoute
   StudentAnnouncementsRoute: typeof StudentAnnouncementsRoute
   StudentAttendanceRoute: typeof StudentAttendanceRoute
@@ -368,11 +446,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FacultyIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faculty/activities': {
+      id: '/faculty/activities'
+      path: '/faculty/activities'
+      fullPath: '/faculty/activities'
+      preLoaderRoute: typeof FacultyActivitiesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faculty/announcements': {
+      id: '/faculty/announcements'
+      path: '/faculty/announcements'
+      fullPath: '/faculty/announcements'
+      preLoaderRoute: typeof FacultyAnnouncementsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faculty/attendance': {
       id: '/faculty/attendance'
       path: '/faculty/attendance'
       fullPath: '/faculty/attendance'
       preLoaderRoute: typeof FacultyAttendanceRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faculty/courses': {
+      id: '/faculty/courses'
+      path: '/faculty/courses'
+      fullPath: '/faculty/courses'
+      preLoaderRoute: typeof FacultyCoursesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/faculty/grades': {
@@ -382,11 +481,32 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof FacultyGradesRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/faculty/profile': {
+      id: '/faculty/profile'
+      path: '/faculty/profile'
+      fullPath: '/faculty/profile'
+      preLoaderRoute: typeof FacultyProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/faculty/sections': {
       id: '/faculty/sections'
       path: '/faculty/sections'
       fullPath: '/faculty/sections'
       preLoaderRoute: typeof FacultySectionsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faculty/students': {
+      id: '/faculty/students'
+      path: '/faculty/students'
+      fullPath: '/faculty/students'
+      preLoaderRoute: typeof FacultyStudentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/faculty/study-hours': {
+      id: '/faculty/study-hours'
+      path: '/faculty/study-hours'
+      fullPath: '/faculty/study-hours'
+      preLoaderRoute: typeof FacultyStudyHoursRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/student/': {
@@ -463,9 +583,15 @@ const rootRouteChildren: RootRouteChildren = {
   AdminHierarchyRoute: AdminHierarchyRoute,
   AdminSecurityRoute: AdminSecurityRoute,
   AdminStudentsRoute: AdminStudentsRoute,
+  FacultyActivitiesRoute: FacultyActivitiesRoute,
+  FacultyAnnouncementsRoute: FacultyAnnouncementsRoute,
   FacultyAttendanceRoute: FacultyAttendanceRoute,
+  FacultyCoursesRoute: FacultyCoursesRoute,
   FacultyGradesRoute: FacultyGradesRoute,
+  FacultyProfileRoute: FacultyProfileRoute,
   FacultySectionsRoute: FacultySectionsRoute,
+  FacultyStudentsRoute: FacultyStudentsRoute,
+  FacultyStudyHoursRoute: FacultyStudyHoursRoute,
   StudentActivitiesRoute: StudentActivitiesRoute,
   StudentAnnouncementsRoute: StudentAnnouncementsRoute,
   StudentAttendanceRoute: StudentAttendanceRoute,
