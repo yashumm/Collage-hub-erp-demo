@@ -37,6 +37,8 @@ type State = {
   faculty: Faculty[];
   courses: Course[];
   sections: Section[];
+  departments: Department[];
+  departmentNames: string[];
   attendance: AttendanceRecord[];
   grades: Grade[];
   announcements: Announcement[];
