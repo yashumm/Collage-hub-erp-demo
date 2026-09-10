@@ -133,6 +133,8 @@ export function ErpProvider({ children }: { children: React.ReactNode }) {
     faculty,
     courses,
     sections,
+    departments,
+    departmentNames: departments.map((d) => d.name),
     attendance,
     grades,
     announcements,
