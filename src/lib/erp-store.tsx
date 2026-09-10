@@ -168,8 +168,30 @@ export function ErpProvider({ children }: { children: React.ReactNode }) {
       log("removed a faculty record", id);
     },
     addCourse: (c) => {
-      setCourses((prev) => [{ ...c, id: uid("c") }, ...prev]);
+      const id = uid("c");
+      setCourses((prev) => [{ ...c, id }, ...prev]);
       log("added course", `${c.code} ${c.title}`);
+      return id;
+    },
+    addDepartment: (d) => {
+      setDepartments((prev) => [...prev, { ...d, id: uid("d") }]);
+      log("created department", `${d.code} · ${d.name}`);
+    },
+    removeDepartment: (id) => {
+      setDepartments((prev) => prev.filter((d) => d.id !== id));
+      log("removed department", id);
+    },
+    addSection: (s) => {
+      setSections((prev) => [...prev, { ...s, id: uid("sec") }]);
+      log("created section", s.label);
+    },
+    updateSection: (id, s) => {
+      setSections((prev) => prev.map((x) => (x.id === id ? { ...x, ...s } : x)));
+      log("updated section", id);
+    },
+    removeSection: (id) => {
+      setSections((prev) => prev.filter((x) => x.id !== id));
+      log("removed section", id);
     },
     updateCourse: (id, c) => {
       setCourses((prev) => prev.map((x) => (x.id === id ? { ...c, id } : x)));
