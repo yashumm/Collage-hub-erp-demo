@@ -44,6 +44,16 @@ export type Section = {
   facultyId: string;
   room: string;
   slot: string;
+  department?: string;
+  code?: string;
+  academicYear?: string;
+};
+
+export type Department = {
+  id: string;
+  name: string;
+  code: string;
+  description?: string;
 };
 
 export type AttendanceMark = "present" | "absent" | "late";
