@@ -5,6 +5,7 @@ import {
   attendance as seedAttendance,
   auditLogs as seedAuditLogs,
   courses as seedCourses,
+  departments as seedDepartments,
   faculty as seedFaculty,
   grades as seedGrades,
   sections as seedSections,
@@ -17,6 +18,7 @@ import {
   type AttendanceRecord,
   type AuditLog,
   type Course,
+  type Department,
   type Faculty,
   type Grade,
   type Role,
@@ -35,6 +37,8 @@ type State = {
   faculty: Faculty[];
   courses: Course[];
   sections: Section[];
+  departments: Department[];
+  departmentNames: string[];
   attendance: AttendanceRecord[];
   grades: Grade[];
   announcements: Announcement[];
@@ -48,9 +52,14 @@ type State = {
   addFaculty: (f: Omit<Faculty, "id">) => void;
   updateFaculty: (id: string, f: Omit<Faculty, "id">) => void;
   removeFaculty: (id: string) => void;
-  addCourse: (c: Omit<Course, "id">) => void;
+  addCourse: (c: Omit<Course, "id">) => string;
   updateCourse: (id: string, c: Omit<Course, "id">) => void;
   removeCourse: (id: string) => void;
+  addDepartment: (d: Omit<Department, "id">) => void;
+  removeDepartment: (id: string) => void;
+  addSection: (s: Omit<Section, "id">) => void;
+  updateSection: (id: string, s: Partial<Omit<Section, "id">>) => void;
+  removeSection: (id: string) => void;
   setAttendance: (sectionId: string, date: string, marks: Record<string, AttendanceMark>) => void;
   setGrade: (studentId: string, courseId: string, internal: number, external: number) => void;
   addAnnouncement: (a: Omit<Announcement, "id">) => void;
@@ -72,7 +81,8 @@ export function ErpProvider({ children }: { children: React.ReactNode }) {
   const [students, setStudents] = React.useState(seedStudents);
   const [faculty, setFaculty] = React.useState(seedFaculty);
   const [courses, setCourses] = React.useState(seedCourses);
-  const [sections] = React.useState(seedSections);
+  const [sections, setSections] = React.useState(seedSections);
+  const [departments, setDepartments] = React.useState(seedDepartments);
   const [attendance, setAttendanceState] = React.useState(seedAttendance);
   const [grades, setGrades] = React.useState(seedGrades);
   const [announcements, setAnnouncements] = React.useState(seedAnnouncements);
@@ -123,6 +133,8 @@ export function ErpProvider({ children }: { children: React.ReactNode }) {
     faculty,
     courses,
     sections,
+    departments,
+    departmentNames: departments.map((d) => d.name),
     attendance,
     grades,
     announcements,
@@ -156,8 +168,30 @@ export function ErpProvider({ children }: { children: React.ReactNode }) {
       log("removed a faculty record", id);
     },
     addCourse: (c) => {
-      setCourses((prev) => [{ ...c, id: uid("c") }, ...prev]);
+      const id = uid("c");
+      setCourses((prev) => [{ ...c, id }, ...prev]);
       log("added course", `${c.code} ${c.title}`);
+      return id;
+    },
+    addDepartment: (d) => {
+      setDepartments((prev) => [...prev, { ...d, id: uid("d") }]);
+      log("created department", `${d.code} · ${d.name}`);
+    },
+    removeDepartment: (id) => {
+      setDepartments((prev) => prev.filter((d) => d.id !== id));
+      log("removed department", id);
+    },
+    addSection: (s) => {
+      setSections((prev) => [...prev, { ...s, id: uid("sec") }]);
+      log("created section", s.label);
+    },
+    updateSection: (id, s) => {
+      setSections((prev) => prev.map((x) => (x.id === id ? { ...x, ...s } : x)));
+      log("updated section", id);
+    },
+    removeSection: (id) => {
+      setSections((prev) => prev.filter((x) => x.id !== id));
+      log("removed section", id);
     },
     updateCourse: (id, c) => {
       setCourses((prev) => prev.map((x) => (x.id === id ? { ...c, id } : x)));

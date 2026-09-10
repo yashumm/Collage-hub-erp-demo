@@ -13,6 +13,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminIndexRouteImport } from './routes/admin/index'
 import { Route as AdminAnnouncementsRouteImport } from './routes/admin/announcements'
 import { Route as AdminCoursesRouteImport } from './routes/admin/courses'
+import { Route as AdminDepartmentsRouteImport } from './routes/admin/departments'
 import { Route as AdminFacultyRouteImport } from './routes/admin/faculty'
 import { Route as AdminHierarchyRouteImport } from './routes/admin/hierarchy'
 import { Route as AdminSecurityRouteImport } from './routes/admin/security'
@@ -55,6 +56,11 @@ const AdminAnnouncementsRoute = AdminAnnouncementsRouteImport.update({
 const AdminCoursesRoute = AdminCoursesRouteImport.update({
   id: '/admin/courses',
   path: '/admin/courses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminDepartmentsRoute = AdminDepartmentsRouteImport.update({
+  id: '/admin/departments',
+  path: '/admin/departments',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AdminFacultyRoute = AdminFacultyRouteImport.update({
@@ -177,6 +183,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/admin/announcements': typeof AdminAnnouncementsRoute
   '/admin/courses': typeof AdminCoursesRoute
+  '/admin/departments': typeof AdminDepartmentsRoute
   '/admin/faculty': typeof AdminFacultyRoute
   '/admin/hierarchy': typeof AdminHierarchyRoute
   '/admin/security': typeof AdminSecurityRoute
@@ -206,6 +213,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/admin/announcements': typeof AdminAnnouncementsRoute
   '/admin/courses': typeof AdminCoursesRoute
+  '/admin/departments': typeof AdminDepartmentsRoute
   '/admin/faculty': typeof AdminFacultyRoute
   '/admin/hierarchy': typeof AdminHierarchyRoute
   '/admin/security': typeof AdminSecurityRoute
@@ -236,6 +244,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/admin/announcements': typeof AdminAnnouncementsRoute
   '/admin/courses': typeof AdminCoursesRoute
+  '/admin/departments': typeof AdminDepartmentsRoute
   '/admin/faculty': typeof AdminFacultyRoute
   '/admin/hierarchy': typeof AdminHierarchyRoute
   '/admin/security': typeof AdminSecurityRoute
@@ -267,6 +276,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin/announcements'
     | '/admin/courses'
+    | '/admin/departments'
     | '/admin/faculty'
     | '/admin/hierarchy'
     | '/admin/security'
@@ -296,6 +306,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin/announcements'
     | '/admin/courses'
+    | '/admin/departments'
     | '/admin/faculty'
     | '/admin/hierarchy'
     | '/admin/security'
@@ -325,6 +336,7 @@ export interface FileRouteTypes {
     | '/'
     | '/admin/announcements'
     | '/admin/courses'
+    | '/admin/departments'
     | '/admin/faculty'
     | '/admin/hierarchy'
     | '/admin/security'
@@ -355,6 +367,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AdminAnnouncementsRoute: typeof AdminAnnouncementsRoute
   AdminCoursesRoute: typeof AdminCoursesRoute
+  AdminDepartmentsRoute: typeof AdminDepartmentsRoute
   AdminFacultyRoute: typeof AdminFacultyRoute
   AdminHierarchyRoute: typeof AdminHierarchyRoute
   AdminSecurityRoute: typeof AdminSecurityRoute
@@ -409,6 +422,13 @@ declare module '@tanstack/react-router' {
       path: '/admin/courses'
       fullPath: '/admin/courses'
       preLoaderRoute: typeof AdminCoursesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/departments': {
+      id: '/admin/departments'
+      path: '/admin/departments'
+      fullPath: '/admin/departments'
+      preLoaderRoute: typeof AdminDepartmentsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/admin/faculty': {
@@ -579,6 +599,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AdminAnnouncementsRoute: AdminAnnouncementsRoute,
   AdminCoursesRoute: AdminCoursesRoute,
+  AdminDepartmentsRoute: AdminDepartmentsRoute,
   AdminFacultyRoute: AdminFacultyRoute,
   AdminHierarchyRoute: AdminHierarchyRoute,
   AdminSecurityRoute: AdminSecurityRoute,

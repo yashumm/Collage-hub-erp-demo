@@ -44,6 +44,16 @@ export type Section = {
   facultyId: string;
   room: string;
   slot: string;
+  department?: string;
+  code?: string;
+  academicYear?: string;
+};
+
+export type Department = {
+  id: string;
+  name: string;
+  code: string;
+  description?: string;
 };
 
 export type AttendanceMark = "present" | "absent" | "late";
@@ -85,6 +95,21 @@ export const DEPARTMENTS = [
   "Electronics",
   "Mechanical",
   "Mathematics",
+];
+
+export const COLLEGE = {
+  name: "Aurora Institute of Technology",
+  established: "1998",
+  campus: "Bengaluru Campus",
+};
+
+export const ACADEMIC_YEARS = ["2024–25", "2025–26", "2026–27", "2027–28"];
+
+export const departments: Department[] = [
+  { id: "d-01", name: "Computer Science", code: "CSE", description: "Computing, software systems and AI." },
+  { id: "d-02", name: "Electronics", code: "ECE", description: "Circuits, embedded systems and signals." },
+  { id: "d-03", name: "Mechanical", code: "MEC", description: "Design, thermal and manufacturing sciences." },
+  { id: "d-04", name: "Mathematics", code: "MAT", description: "Pure and applied mathematics." },
 ];
 
 export const PROGRAMS = ["B.Tech", "M.Tech", "B.Sc"];
