@@ -1,26 +1,48 @@
-# College Hub Demo
+College Hub ERP Demo
 
-Build a complete but streamlined frontend-only College ERP prototype exactly as requested. Use React/TypeScript/Tailwind, centralized mock/static data and local state only: no backend, database, auth server, APIs, environment variables, or real security claims. Create an elegant role-selection landing screen for Admin, Faculty, Student and a role switcher. Implement every specified route/page with consistent reusable layout/components, responsive design, functional navigation, search/filter/sort where useful, add/edit/delete forms and modals, validation, toasts, dropdowns/tabs, attendance and activity interactions. Make it professional academic/enterprise UI, simple to demo, no placeholder pages. Ensure the admin hierarchy explorer and Security & Permissions clearly say frontend role access is demonstrative only. Faculty screens must show only assigned mock sections/students; student screens only their own mock information. Prioritize a polished coherent working demo over excess complexity.
+A frontend prototype of a College Enterprise Resource Planning (ERP) system designed to demonstrate different interfaces and workflows for Admin, Faculty, and Students.
 
-This project was built with [Lovable](https://lovable.dev).
+Project Overview
 
-**Live app**: https://campus-harmony-94.lovable.app
+College Hub is a web-based academic management prototype that brings common college activities into a single interface. Users can explore role-specific dashboards and interact with different academic and administrative features.
 
-## Build with Lovable
+Features
 
-Continue developing this project in the [Lovable editor](https://lovable.dev/projects/e7bb151e-d1ff-45de-b725-92a4a40896bb).
+- Role selection for Admin, Faculty, and Student
+- Role-based dashboard interfaces
+- Admin hierarchy exploration
+- Student and faculty information views
+- Attendance and activity interactions
+- Search and filtering
+- Forms, modals, dropdowns, and tabs
+- Responsive user interface
 
-- **Ship faster**: describe what you want to build and Lovable handles the code.
-- **Stay in sync**: every change made in Lovable is committed straight to this repository.
-- **Full ownership**: this code is yours. Push to `main` on GitHub and your changes sync back into Lovable, ready for your next prompt.
+Tech Stack
 
-## Development
+- React
+- TypeScript
+- Tailwind CSS
+- Vite
 
-Prefer working locally? You need Node.js and npm — [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating).
+Demo
 
-```sh
-git clone <this-repository-url>
-cd <repository-name>
-npm i
+Live application: https://campus-harmony-94.lovable.app
+
+Important Note
+
+This project is a frontend demonstration using mock/static data and local state. It does not include a backend database, real authentication, APIs, or production-level security. Role access is demonstrated through the user interface only.
+
+Purpose
+
+The project was developed to explore frontend development, reusable UI components, dashboard design, navigation, and interactive web application workflows.
+
+Getting Started
+
+git clone <repository-url>
+cd college-hub-erp-demo
+npm install
 npm run dev
-```
+
+Autor
+
+Yashaswini MM
